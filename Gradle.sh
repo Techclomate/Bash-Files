@@ -1,13 +1,14 @@
 #!/bin/sh
-sudo apt update
-sudo apt install openjdk-11-jdk
-java -version
-wget https://services.gradle.org/distributions/gradle-${VERSION}-bin.zip -P /tmp
-sudo unzip -d /opt/gradle /tmp/gradle-${VERSION}-bin.zip
-sudo ln -s /opt/gradle/gradle-${VERSION} /opt/gradle/latest
+sudo apt install default-jdk -y
+java --version
+wget -c https://services.gradle.org/distributions/gradle-7.4.2-bin.zip -P /tmp
+ls /tmp
+sudo apt install unzip
+sudo unzip -d /opt/gradle /tmp/gradle-7.4.2-bin.zip
+ls /opt/gradle
 sudo nano /etc/profile.d/gradle.sh
-export GRADLE_HOME=/opt/gradle/latest
+export GRADLE_HOME=/opt/gradle/gradle-7.4.2
 export PATH=${GRADLE_HOME}/bin:${PATH}
 sudo chmod +x /etc/profile.d/gradle.sh
 source /etc/profile.d/gradle.sh
-gradle -v
+gradle --version
